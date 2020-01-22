@@ -1,11 +1,14 @@
 import React from 'react'
+import { Link } from "react-router-dom"
 
 
 
-const FixtureList = props => {
-    return(
-        <div>
-            <table class="table">
+const FixtureList = props => (
+    
+    
+    
+<div>
+<table class="table">
   <thead>
     <tr>
       <th scope="col">Home Team</th>
@@ -16,7 +19,7 @@ const FixtureList = props => {
     </tr>
   </thead>
   <tbody>
-    {fixtures.map(fixture => (
+    {props.fixtures.map(fixture => (
     <tr>
       <td>{fixture.homeTeam.team_name}</td>
       <td>{fixture.event_date}</td>
@@ -28,8 +31,8 @@ const FixtureList = props => {
   </tbody>
 </table>
 
-        </div>
-    )
-};
+</div>
+   
+);
 
 export default FixtureList;

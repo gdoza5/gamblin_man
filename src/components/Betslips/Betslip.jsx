@@ -8,7 +8,7 @@ const Betslip = (props) => (
     
             <div>
                 <button onChange={(e) => props.handleOnChange(e)}>Search Fixtures</button>
-                <Link to='/betslip'>
+                <Link to='/fixturelist'>
                 <button onClick={props.handleOnClick}>Search Fixtures</button>    
                 </Link> 
             </div>

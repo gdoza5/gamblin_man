@@ -8,6 +8,7 @@ import userService from "../../utils/userService";
 
 import "./App.css";
 import BetslipPage from "../BetslipPage/BetslipPage";
+import FixtureList from "../FixtureList/FixtureList";
 
 class App extends Component {
   constructor() {
@@ -87,6 +88,17 @@ handleOnClick = () => {
                 handleSignuporLogin={this.handleSignuporLogin}
               />
             )}
+          />
+          <Route
+          exact
+          path="/fixturelist"
+          render={({ history }) =>(
+            <FixtureList
+            history={history}
+            fixtures={this.state.fixtures}
+            user={this.state.user}
+            />
+          )}
           />
         </Switch>
       </div>
