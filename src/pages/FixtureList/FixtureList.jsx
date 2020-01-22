@@ -20,7 +20,7 @@ const FixtureList = props => (
   </thead>
   <tbody>
     {props.fixtures.map(fixture => (
-    <tr>
+    <tr id={fixture.fixture_id}>
       <td>{fixture.homeTeam.team_name}</td>
       <td>{fixture.event_date}</td>
       <td>{fixture.venue}</td>
