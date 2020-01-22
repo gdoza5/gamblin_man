@@ -10,7 +10,12 @@ const NavBar = props => {
       </Link>
       &nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
       <span className="NavBar-welcome">WELCOME, {props.user.name}</span>
+      &nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+      <Link to="/betslip" className="NavBar-link">
+        Betslip
+      </Link>
     </div>
+    
   ) : (
     <div>
       <Link to="/login" className="NavBar-link">

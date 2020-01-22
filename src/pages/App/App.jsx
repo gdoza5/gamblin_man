@@ -5,13 +5,18 @@ import SignupPage from "../SignupPage/SignupPage";
 import LoginPage from "../LoginPage/LoginPage";
 import userService from "../../utils/userService";
 
+
 import "./App.css";
+import BetslipPage from "../BetslipPage/BetslipPage";
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
-      user: userService.getUser()
+      user: userService.getUser(),
+      fixtures: [],
+      
+      
     };
   }
   handlelogout = () => {
@@ -22,6 +27,23 @@ class App extends Component {
   handleSignuporLogin = () => {
     this.setState({ user: userService.getUser() });
   };
+//----------------------to search-----//
+
+handleOnChange = e => {
+  this.setState({
+    search: e.target.value
+  });
+};
+
+handleOnClick = () => {
+  getFixtureInfo()
+  .then(results => {
+    console.log(results)
+    this.setState({ fixtures: results });
+
+  });
+};
+
   render() {
     return (
       <div>
@@ -46,6 +68,16 @@ class App extends Component {
               />
             )}
           />
+          <Route 
+          exact path="/betslip"
+          render={({ history }) => (
+            <BetslipPage
+            history={history}
+            handleOnChange={this.handleOnChange}
+            handleOnClick={this.handleOnClick}
+            />
+            )}
+          />
           <Route
             exact
             path="/login"
@@ -63,3 +95,32 @@ class App extends Component {
 }
 
 export default App;
+
+
+async function getFixtureInfo(fixl) {
+  let results = '';
+  await fetch(`https://api-football-v1.p.rapidapi.com/v2/fixtures/league/524/next/10`, {
+    headers: {
+      "X-RapidAPI-Key": "92794e2d97msh93a9054166a701dp1a219djsnc2fe202d8e66"
+    },
+    query: "America/Mexico_City"
+  })
+    .then(response => {
+      
+      return response.json();
+    })
+    .then(jsonData => {
+      // console.log(jsonData);
+      // this.setState({
+      //   fixtures: jsonData
+      // })
+      return jsonData
+    })
+     .then(fixl => {
+       
+       results = fixl.api.fixtures;
+       
+
+        return results
+     });
+  }
