@@ -16,12 +16,15 @@ const FixtureList = props => {
     </tr>
   </thead>
   <tbody>
+    {fixtures.map(fixture => (
     <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
+      <td>{fixture.homeTeam.team_name}</td>
+      <td>{fixture.event_date}</td>
+      <td>{fixture.venue}</td>
+      <td>{fixture.score.fulltime}</td>
+      <td>{fixture.awayTeam.team_name}</td>
     </tr>
+    ))}
   </tbody>
 </table>
 
