@@ -38,7 +38,7 @@ handleOnChange = e => {
 handleOnClick = () => {
   getFixtureInfo()
   .then(results => {
-    console.log(results)
+    console.log("this is in state maybe", results)
     this.setState({ fixtures: results });
 
   });
@@ -97,30 +97,16 @@ handleOnClick = () => {
 export default App;
 
 
-async function getFixtureInfo(fixl) {
-  let results = '';
-  await fetch(`https://api-football-v1.p.rapidapi.com/v2/fixtures/league/524/next/10`, {
+async function getFixtureInfo() {
+  
+  let data = await fetch(`https://api-football-v1.p.rapidapi.com/v2/fixtures/league/524/next/10`, {
     headers: {
       "X-RapidAPI-Key": "92794e2d97msh93a9054166a701dp1a219djsnc2fe202d8e66"
     },
     query: "America/Mexico_City"
-  })
-    .then(response => {
-      
-      return response.json();
-    })
-    .then(jsonData => {
-      // console.log(jsonData);
-      // this.setState({
-      //   fixtures: jsonData
-      // })
-      return jsonData
-    })
-     .then(fixl => {
-       
-       results = fixl.api.fixtures;
-       
-
-        return results
-     });
   }
+  );
+  let jsonData = await data.json();
+  console.log("this is in function", jsonData)
+  return await jsonData.api.fixtures
+}
