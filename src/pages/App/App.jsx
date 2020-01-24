@@ -9,6 +9,7 @@ import userService from "../../utils/userService";
 import "./App.css";
 import BetslipPage from "../BetslipPage/BetslipPage";
 import FixtureList from "../FixtureList/FixtureList";
+import SingleFixture from "../SingleFixture/SingleFixturePage";
 
 class App extends Component {
   constructor() {
@@ -16,6 +17,9 @@ class App extends Component {
     this.state = {
       user: userService.getUser(),
       fixtures: [],
+      odds: [],
+      sfix: null,
+      ofix: null,
       
       
     };
@@ -30,10 +34,14 @@ class App extends Component {
   };
 //----------------------to search-----//
 
-handleOnChange = e => {
+handleOnChange = async e => {
+  console.log('ACCCtive------')
   this.setState({
-    search: e.target.value
-  });
+    sfix: e.target.value,
+    ofix: e.target.id
+  });  
+  
+  console.log(`${e.target.id}`)
 };
 
 handleOnClick = () => {
@@ -44,6 +52,14 @@ handleOnClick = () => {
 
   });
 };
+
+oddsOnClick = () => {
+  getFixtureodds(this.state.sfix)
+  .then(results => {
+    console.log("odds api call please work", results)
+    this.setState({ odds: results });
+  })
+}
 
   render() {
     return (
@@ -74,7 +90,7 @@ handleOnClick = () => {
           render={({ history }) => (
             <BetslipPage
             history={history}
-            handleOnChange={this.handleOnChange}
+        
             handleOnClick={this.handleOnClick}
             />
             )}
@@ -97,6 +113,20 @@ handleOnClick = () => {
             history={history}
             fixtures={this.state.fixtures}
             user={this.state.user}
+            handleOnChange={this.handleOnChange}
+            oddsOnClick={this.oddsOnClick}
+            />
+          )}
+          /><Route
+          exact
+          path="/singlefixture"
+          render={({ history }) =>(
+            <SingleFixture
+            history={history}
+            fixtures={this.state.fixtures}
+            user={this.state.user}
+            ofix={this.state.ofix}
+            odds={this.state.odds}
             />
           )}
           />
@@ -122,3 +152,19 @@ async function getFixtureInfo() {
   console.log("this is in function", jsonData)
   return await jsonData.api.fixtures
 }
+
+
+async function getFixtureodds(inpt) {
+  
+  let data = await fetch(`https://api-football-v1.p.rapidapi.com/v2/odds/fixture/${inpt}`, {
+    headers: {
+      "X-RapidAPI-Key": "92794e2d97msh93a9054166a701dp1a219djsnc2fe202d8e66"
+    },
+    
+  }
+  );
+  let jsonData = await data.json();
+  console.log("this is is for the odds -------------", jsonData)
+  return await jsonData.api.odds[0].bookmakers[0].bets[0].values
+}
+
