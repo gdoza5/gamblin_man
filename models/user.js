@@ -2,11 +2,21 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 
 const SALT_ROUNDS = 6;
+const betSchema = new mongoose.Schema({
+  homeN: String,
+  hLogo: String,
+  awayN: String,
+  aLogo: String,
+  hOdd: String,
+  oOdd: String,
+  aOdd: String
+});
 
 const userSchema = new mongoose.Schema({
   name: String,
   email: {type: String},
-  password: String
+  password: String,
+  bets: [betSchema]
 }, {
   timestamps: true
 });
