@@ -22,9 +22,9 @@ AAu, I want to see the odds for those fixtures
 AAU, I want save individual fixtures and my score predictions
 
 **Landing**
-![SCREENSHOT](IMAGE PATH)
-**User Login**
-![PIC](../public/login.png)
+![SCREENSHOT](./public/login.png)
+**Matches**
+![PIC](./public/matches.png)
 [top](#home)
 ## <a name="tech"></a> **Tech**
 ________________
