@@ -8,7 +8,7 @@
 6. [Future Enhancements](#stretch)
 ## <a name="desc"></a> **Description**
 ________________
-A web application to display and aggregate betting odds and suggestions for the outcomes of future soccer matches.
+A web application to display and aggregate betting odds and suggestions for the outcomes of future soccer matches. I wanted to get data to better play the Sportspredictor game.[NBC](https://predictor.nbcsports.com/signUp)
 [top](#home)
 ## <a name="start"></a> **Getting Started**
 ________________
