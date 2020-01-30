@@ -8,7 +8,7 @@ const FixtureList = props => (
     
     
 <div>
-<table className="table">
+<table class="table table-dark">
   <thead>
     <tr>
       <th scope="col">Home Team</th>
@@ -27,8 +27,8 @@ const FixtureList = props => (
       <td>{fixture.venue}</td>
       <td>{fixture.score.fulltime}</td>
       <td>{fixture.awayTeam.team_name} <img src={fixture.awayTeam.logo} /></td>
-      <td><button value={fixture.fixture_id} id={props.fixtures.indexOf(fixture)} onClick={(e) => props.handleOnChange(e)}>Get Fix</button>
-      <button onClick={props.oddsOnClick}>Search Odds</button>
+      <td><button class="btn btn-dark" value={fixture.fixture_id} id={props.fixtures.indexOf(fixture)} onClick={(e) => props.handleOnChange(e)}>Get Fix</button>
+      <button class="btn btn-dark" onClick={props.oddsOnClick}>Search Odds</button>
       <Link to='/singlefixture'>Go to Odds page</Link>
       </td>
     </tr>

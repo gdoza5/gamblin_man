@@ -7,9 +7,9 @@ import {Link} from 'react-router-dom'
 const Betslip = (props) => (
     
             <div>
-                <button onChange={(e) => props.handleOnChange(e)}></button>
+                <button class="btn btn-dark" onChange={(e) => props.handleOnChange(e)}></button>
                 <Link to='/fixturelist'>
-                <button onClick={props.handleOnClick}>Search Fixtures</button>    
+                <button class="btn btn-dark"onClick={props.handleOnClick}>Search Fixtures</button>    
                 </Link> 
             </div>
         )
